@@ -5,7 +5,12 @@ const clueHandler = () => {
 		"With this bit of card you'll be able to attend an event, so don't accidentally go to the wrong place.",
 		"The event is in February 2019, so don't forget to take a coat with you.",
 		"The event is for a music thing by a band, so make sure you attach your ears before you leave the house.",
-		"The band came out in about 2014."
+		"The band formed in 2011 but gained notoriety in around 2014.",
+		"They are British synth pop.",
+		"The band have a very distinctive vocal and instrumental sound.",
+		"The band are Iain, Martin and Lauren.",
+		"You will not get any points in a spelling test for writing their name.",
+		"The tickets were nearly £30 each, so don't accidentally not enjoy it.",
 	];
 
 	let _noMore = [
