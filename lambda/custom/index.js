@@ -55,7 +55,6 @@ const LaunchRequestHandler = {
 
     return handlerInput.responseBuilder
       .speak(skill.intro.main)
-	    .shouldEndSession(false)
       .reprompt(skill.intro.prompt)
       .withSimpleCard(skill.intro.title, skill.intro.main)
       .getResponse();
