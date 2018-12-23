@@ -10,6 +10,37 @@ const session = require('./src/sessionHandler');
 // require skill
 const skill = require('./src/skill');
 
+// clue response builder
+const buildClueResponse = (handlerInput) => {
+	let cluePosition = session.get('cluePosition');
+	let clue = skill.clues.get(cluePosition);
+
+	if (clue.number === 0) {
+		return handlerInput.responseBuilder
+      .speak(clue.body)
+      .withSimpleCard("No more clues!", clue.body)
+      .withShouldEndSession(false)
+      .getResponse();
+  }
+
+  let cardTitle = "Clue number " + clue.number;
+	let cardBody = clue.body;
+	let speechText = cardTitle + "... " + cardBody;
+
+	if (clue.number === 1) {
+	  speechText = "Ok, here we go! " + speechText;
+  }
+
+	// increment clue position
+	session.set('cluePosition', cluePosition + 1);
+
+	return handlerInput.responseBuilder
+		.speak(speechText)
+		.withSimpleCard(cardTitle, cardBody)
+		.withShouldEndSession(false)
+		.getResponse();
+}
+
 // begin handlers...
 
 const LaunchRequestHandler = {
@@ -33,6 +64,20 @@ const LaunchRequestHandler = {
       .withSimpleCard(skill.intro.title, skill.intro.main)
       .getResponse();
   },
+};
+
+const PositiveIntentHandler = {
+	canHandle(handlerInput) {
+		return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+			&& handlerInput.requestEnvelope.request.intent.name === 'AMAZON.YesIntent';
+	},
+	handle(handlerInput) {
+		if (session.get('inPlay') === false) {
+			session.set('inPlay', true);
+			return buildClueResponse(handlerInput);
+    }
+
+	}
 };
 
 const HelloWorldIntentHandler = {
@@ -112,6 +157,7 @@ const skillBuilder = Alexa.SkillBuilders.custom();
 exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
+    PositiveIntentHandler,
     HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
