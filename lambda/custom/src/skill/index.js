@@ -2,6 +2,8 @@ const skill = () => {
 
 	let clues = require('../clueHandler');
 
+	const answerHandler = require('../answerHandler');
+
 	this.intro = function() {
 
 		this.title = function() {
@@ -31,6 +33,16 @@ const skill = () => {
 
 		this.get = (cluePosition) => {
 			return clues.get(cluePosition);
+		}
+
+		return this;
+
+	}();
+
+	this.guess = function() {
+
+		this.make = (answer) => {
+			return answerHandler.determine(answer);
 		}
 
 		return this;

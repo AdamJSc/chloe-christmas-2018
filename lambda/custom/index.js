@@ -95,6 +95,29 @@ const NextClueIntentHandler = {
 	}
 };
 
+const GuessIntentHandler = {
+	canHandle(handlerInput) {
+		return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+			&& handlerInput.requestEnvelope.request.intent.name === 'GuessIntent';
+	},
+	handle(handlerInput) {
+		session.load(handlerInput);
+
+		// Get the slot from this totally not difficult to find object.
+		const bandSlot = handlerInput.requestEnvelope.request.intent.slots.band;
+		const answer = (bandSlot && bandSlot.value) ? bandSlot.value : null;
+		const guess = skill.guess.make(answer);
+		const title = guess.status === "correct" ? "YAAAY!!" : "Incorrect...";
+		const shouldEnd = guess.status === "correct" ? true : false;
+
+		return handlerInput.responseBuilder
+			.speak(guess.message)
+			.withSimpleCard(title, guess.message)
+			.withShouldEndSession(shouldEnd)
+			.getResponse();
+	}
+};
+
 const HelloWorldIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -184,6 +207,7 @@ exports.handler = skillBuilder
     LaunchRequestHandler,
     PositiveIntentHandler,
     NextClueIntentHandler,
+    GuessIntentHandler,
     HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,

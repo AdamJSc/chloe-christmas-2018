@@ -3,7 +3,16 @@
     "languageModel": {
       "invocationName": "my present",
       "types": [
-
+        {
+          "values": [
+            {
+              "name": {
+                "value": "churches"
+              }
+            }
+          ],
+          "name": "LIST_OF_BANDS"
+        }
       ],
       "intents": [
         {
@@ -46,6 +55,27 @@
             "next clue",
             "i want another clue",
             "give me another clue"
+          ]
+        },
+        {
+          "name": "GuessIntent",
+          "slots": [
+            {
+              "name": "band",
+              "type": "LIST_OF_BANDS"
+            }
+          ],
+          "samples": [
+            "is it {band}",
+            "is it The {band}",
+            "is it tickets for {band}",
+            "is it tickets for The {band}",
+            "tickets for {band}",
+            "tickets for The {band}",
+            "i am going to guess {band}",
+            "i am going to guess The {band}",
+            "my guess is {band}",
+            "my guess is The {band}"
           ]
         },
         {
