@@ -97,7 +97,6 @@ const GuessIntentHandler = {
 	handle(handlerInput) {
 		session.load(handlerInput);
 
-		// Get the slot from this totally not difficult to find object.
 		const bandSlot = handlerInput.requestEnvelope.request.intent.slots.band;
 		const answer = (bandSlot && bandSlot.value) ? bandSlot.value : null;
 		const guess = skill.guess.make(answer);
