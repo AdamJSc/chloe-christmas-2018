@@ -1,19 +1,36 @@
 /* eslint-disable  func-names */
 /* eslint-disable  no-console */
 
+// require Alexa
 const Alexa = require('ask-sdk-core');
+
+// require session handler
+const session = require('./src/sessionHandler');
+
+// require skill
+const skill = require('./src/skill');
+
+// begin handlers...
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speechText = 'Welcome to the Alexa Skills Kit, you can say hello!';
+
+    // set clue position to 0
+	  session.set('cluePosition', 0);
+
+	  return handlerInput.responseBuilder
+		  .speak("intro text")
+		  .reprompt("intro prompt")
+		  .getResponse();
 
     return handlerInput.responseBuilder
-      .speak(speechText)
-      .reprompt(speechText)
-      .withSimpleCard('Hello World', speechText)
+      .speak(skill.intro.main)
+	    .shouldEndSession(false)
+      .reprompt(skill.intro.prompt)
+      .withSimpleCard(skill.intro.title, skill.intro.main)
       .getResponse();
   },
 };

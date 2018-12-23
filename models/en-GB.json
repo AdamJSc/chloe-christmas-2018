@@ -37,6 +37,18 @@
           ]
         },
         {
+          "name": "NextClueIntent",
+          "slots": [
+
+          ],
+          "samples": [
+            "next",
+            "next clue",
+            "i want another clue",
+            "give me another clue"
+          ]
+        },
+        {
           "name": "HelloWorldIntent",
           "slots": [
 
