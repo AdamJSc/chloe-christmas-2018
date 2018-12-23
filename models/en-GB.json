@@ -77,17 +77,6 @@
             "my guess is {band}",
             "my guess is The {band}"
           ]
-        },
-        {
-          "name": "HelloWorldIntent",
-          "slots": [
-
-          ],
-          "samples": [
-            "hello",
-            "say hello",
-            "say hello world"
-          ]
         }
       ]
     }
