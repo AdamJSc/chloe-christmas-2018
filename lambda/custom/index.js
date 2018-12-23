@@ -53,14 +53,8 @@ const LaunchRequestHandler = {
     // set clue position to 0
 	  session.set('cluePosition', 0);
 
-	  return handlerInput.responseBuilder
-		  .speak("intro text")
-		  .reprompt("intro prompt")
-		  .getResponse();
-
     return handlerInput.responseBuilder
       .speak(skill.intro.main)
-	    .shouldEndSession(false)
       .reprompt(skill.intro.prompt)
       .withSimpleCard(skill.intro.title, skill.intro.main)
       .getResponse();
@@ -103,7 +97,6 @@ const GuessIntentHandler = {
 	handle(handlerInput) {
 		session.load(handlerInput);
 
-		// Get the slot from this totally not difficult to find object.
 		const bandSlot = handlerInput.requestEnvelope.request.intent.slots.band;
 		const answer = (bandSlot && bandSlot.value) ? bandSlot.value : null;
 		const guess = skill.guess.make(answer);
@@ -116,23 +109,6 @@ const GuessIntentHandler = {
 			.withShouldEndSession(shouldEnd)
 			.getResponse();
 	}
-};
-
-const HelloWorldIntentHandler = {
-  canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent';
-  },
-  handle(handlerInput) {
-  	session.load(handlerInput);
-
-    const speechText = 'Hello World!';
-
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .withSimpleCard('Hello World', speechText)
-      .getResponse();
-  },
 };
 
 const HelpIntentHandler = {
@@ -208,7 +184,6 @@ exports.handler = skillBuilder
     PositiveIntentHandler,
     NextClueIntentHandler,
     GuessIntentHandler,
-    HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler
