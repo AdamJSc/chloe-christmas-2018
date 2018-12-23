@@ -1,6 +1,6 @@
 const clueHandler = () => {
 
-	let clues = [
+	let _clues = [
 		"The gift is a bit of card, so don't accidentally put it in a shredder.",
 		"With this bit of card you'll be able to attend an event, so don't accidentally go to the wrong place.",
 		"The event is in February 2019, so don't forget to take a coat with you.",
@@ -8,7 +8,7 @@ const clueHandler = () => {
 		"The band came out in about 2014."
 	];
 
-	let noMore = [
+	let _noMore = [
 		"No more clues now, this is silly",
 		"I've got nothing else for you, sorry",
 		"I don't know anything else, surely you've got it by now?!"
@@ -16,11 +16,11 @@ const clueHandler = () => {
 
 	this.get = function(cluePosition) {
 		const getRandomNoMore = () => {
-			const index = parseInt(Math.random() * noMore.length);
-			return noMore[index];
+			const index = parseInt(Math.random() * _noMore.length);
+			return _noMore[index];
 		};
 
-		if (!clues.hasOwnProperty(cluePosition)) {
+		if (!_clues.hasOwnProperty(cluePosition)) {
 			return {
 				number: 0,
 				body: getRandomNoMore()
@@ -29,7 +29,7 @@ const clueHandler = () => {
 
 		return {
 			number: (cluePosition + 1),
-			body: clues[cluePosition]
+			body: _clues[cluePosition]
 		};
 	};
 
