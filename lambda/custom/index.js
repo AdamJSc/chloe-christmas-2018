@@ -80,6 +80,16 @@ const PositiveIntentHandler = {
 	}
 };
 
+const NextClueIntentHandler = {
+	canHandle(handlerInput) {
+		return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+			&& handlerInput.requestEnvelope.request.intent.name === 'NextClueIntent';
+	},
+	handle(handlerInput) {
+		return buildClueResponse(handlerInput);
+	}
+};
+
 const HelloWorldIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -158,6 +168,7 @@ exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
     PositiveIntentHandler,
+    NextClueIntentHandler,
     HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
