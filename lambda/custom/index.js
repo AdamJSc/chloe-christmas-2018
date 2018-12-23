@@ -53,11 +53,6 @@ const LaunchRequestHandler = {
     // set clue position to 0
 	  session.set('cluePosition', 0);
 
-	  return handlerInput.responseBuilder
-		  .speak("intro text")
-		  .reprompt("intro prompt")
-		  .getResponse();
-
     return handlerInput.responseBuilder
       .speak(skill.intro.main)
 	    .shouldEndSession(false)
