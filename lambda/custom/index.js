@@ -23,6 +23,9 @@ const buildClueResponse = (handlerInput) => {
       .getResponse();
   }
 
+	// increment clue position
+	session.set('cluePosition', cluePosition + 1);
+
   let cardTitle = "Clue number " + clue.number;
 	let cardBody = clue.body;
 	let speechText = cardTitle + "... " + cardBody;
@@ -30,9 +33,6 @@ const buildClueResponse = (handlerInput) => {
 	if (clue.number === 1) {
 	  speechText = "Ok, here we go! " + speechText;
   }
-
-	// increment clue position
-	session.set('cluePosition', cluePosition + 1);
 
 	return handlerInput.responseBuilder
 		.speak(speechText)
@@ -72,7 +72,7 @@ const PositiveIntentHandler = {
 			&& handlerInput.requestEnvelope.request.intent.name === 'AMAZON.YesIntent';
 	},
 	handle(handlerInput) {
-		if (session.get('inPlay') === false) {
+		if (session.get('inPlay') !== true) {
 			session.set('inPlay', true);
 			return buildClueResponse(handlerInput);
     }
