@@ -17,8 +17,8 @@ const answerHandler = () => {
 		if (answer === "churches") {
 			return {status: "correct", message: "You've got it! Your present is two tickets to see Chuh Verh Chiz at the O2 Academy in Bournemouth "
 				+ "on Tuesday 12th February 2019. "
-				+ "Hopefully Ticketmaster will post them out to you before then. "
-				+ "Well done, and hope you enjoyed playing Guess The Gift. Merry Christmas again, and bye!!"};
+				+ "Hopefully Ticketmaster will have posted them out to you by then. "
+				+ "Well done, and hope you enjoyed playing Guess The Gift. Merry Christmas once again, and bye!!"};
 		}
 
 		return {status: "incorrect", message: _getRejection()};
