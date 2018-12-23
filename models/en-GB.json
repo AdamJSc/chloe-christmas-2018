@@ -25,6 +25,18 @@
           ]
         },
         {
+          "name": "AMAZON.YesIntent",
+          "samples": [
+
+          ]
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": [
+
+          ]
+        },
+        {
           "name": "HelloWorldIntent",
           "slots": [
 
