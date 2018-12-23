@@ -48,6 +48,7 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput) {
+	  session.load(handlerInput);
 
     // set clue position to 0
 	  session.set('cluePosition', 0);
@@ -72,6 +73,8 @@ const PositiveIntentHandler = {
 			&& handlerInput.requestEnvelope.request.intent.name === 'AMAZON.YesIntent';
 	},
 	handle(handlerInput) {
+		session.load(handlerInput);
+
 		if (session.get('inPlay') !== true) {
 			session.set('inPlay', true);
 			return buildClueResponse(handlerInput);
@@ -86,6 +89,8 @@ const NextClueIntentHandler = {
 			&& handlerInput.requestEnvelope.request.intent.name === 'NextClueIntent';
 	},
 	handle(handlerInput) {
+		session.load(handlerInput);
+
 		return buildClueResponse(handlerInput);
 	}
 };
@@ -96,6 +101,8 @@ const HelloWorldIntentHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent';
   },
   handle(handlerInput) {
+  	session.load(handlerInput);
+
     const speechText = 'Hello World!';
 
     return handlerInput.responseBuilder
@@ -111,6 +118,8 @@ const HelpIntentHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
   },
   handle(handlerInput) {
+  	session.load(handlerInput);
+
     const speechText = 'You can say hello to me!';
 
     return handlerInput.responseBuilder
@@ -128,6 +137,8 @@ const CancelAndStopIntentHandler = {
         || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
   },
   handle(handlerInput) {
+  	session.load(handlerInput);
+
     const speechText = 'Goodbye!';
 
     return handlerInput.responseBuilder
@@ -142,6 +153,8 @@ const SessionEndedRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'SessionEndedRequest';
   },
   handle(handlerInput) {
+  	session.load(handlerInput);
+
     console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
 
     return handlerInput.responseBuilder.getResponse();
@@ -153,6 +166,8 @@ const ErrorHandler = {
     return true;
   },
   handle(handlerInput, error) {
+  	session.load(handlerInput);
+
     console.log(`Error handled: ${error.message}`);
 
     return handlerInput.responseBuilder
