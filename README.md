@@ -1,5 +1,5 @@
 # Chloe Christmas 2018
-**v1.0.0**
+**v1.0.1**
 
 Made for Chloe to try to guess her Christmas present,
 which still hadn't arrived in the post by Christmas Eve.
