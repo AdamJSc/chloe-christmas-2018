@@ -7,5 +7,14 @@ which still hadn't arrived in the post by Christmas Eve.
 Built using the [Alexa Skills Kit](https://developer.amazon.com/alexa-skills-kit)
 ~~for "rapid prototyping"~~ because it was Christmas Eve.
 
-`node_modules` directory has been `.gitignored`, because good practice/habit -
-so run `npm install` before `ask deploy`
+Once you have cloned this repo, you'll need to generate a new ASK config file by doing the following:
+
+* [Install the ASK CLI](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html)
+* Run `ask new`
+* Name your skill (e.g. _"ChloeChristmas2018"_)
+* Copy the newly created `.ask` directory into the repo root directory
+* In the repo root directory:
+    * `cd lambda/custom`
+    * `npm install`
+    * `cd ../../`
+    * `ask deploy`
