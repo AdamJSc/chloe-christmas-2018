@@ -31,7 +31,7 @@ const buildClueResponse = (handlerInput) => {
   let speechText = cardTitle + '... ' + cardBody
 
   if (clue.number === 1) {
-	  speechText = 'Ok, here we go! ' + speechText
+    speechText = 'Ok, here we go! ' + speechText
   }
 
   return handlerInput.responseBuilder
@@ -48,10 +48,10 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest'
   },
   handle (handlerInput) {
-	  session.load(handlerInput)
+    session.load(handlerInput)
 
     // set clue position to 0
-	  session.set('cluePosition', 0)
+    session.set('cluePosition', 0)
 
     return handlerInput.responseBuilder
       .speak(skill.intro.main)
@@ -64,7 +64,7 @@ const LaunchRequestHandler = {
 const PositiveIntentHandler = {
   canHandle (handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
-			handlerInput.requestEnvelope.request.intent.name === 'AMAZON.YesIntent'
+      handlerInput.requestEnvelope.request.intent.name === 'AMAZON.YesIntent'
   },
   handle (handlerInput) {
     session.load(handlerInput)
@@ -79,7 +79,7 @@ const PositiveIntentHandler = {
 const NextClueIntentHandler = {
   canHandle (handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
-			handlerInput.requestEnvelope.request.intent.name === 'NextClueIntent'
+      handlerInput.requestEnvelope.request.intent.name === 'NextClueIntent'
   },
   handle (handlerInput) {
     session.load(handlerInput)
@@ -91,7 +91,7 @@ const NextClueIntentHandler = {
 const GuessIntentHandler = {
   canHandle (handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
-			handlerInput.requestEnvelope.request.intent.name === 'GuessIntent'
+      handlerInput.requestEnvelope.request.intent.name === 'GuessIntent'
   },
   handle (handlerInput) {
     session.load(handlerInput)
@@ -116,7 +116,7 @@ const HelpIntentHandler = {
       handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent'
   },
   handle (handlerInput) {
-  	session.load(handlerInput)
+    session.load(handlerInput)
 
     const speechText = 'You can say hello to me!'
 
@@ -135,7 +135,7 @@ const CancelAndStopIntentHandler = {
         handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent')
   },
   handle (handlerInput) {
-  	session.load(handlerInput)
+    session.load(handlerInput)
 
     const speechText = 'Goodbye!'
 
@@ -151,7 +151,7 @@ const SessionEndedRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'SessionEndedRequest'
   },
   handle (handlerInput) {
-  	session.load(handlerInput)
+    session.load(handlerInput)
 
     console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`)
 
@@ -164,7 +164,7 @@ const ErrorHandler = {
     return true
   },
   handle (handlerInput, error) {
-  	session.load(handlerInput)
+    session.load(handlerInput)
 
     console.log(`Error handled: ${error.message}`)
 
