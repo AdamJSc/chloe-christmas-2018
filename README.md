@@ -12,6 +12,7 @@ Once you have cloned this repo, you'll need to generate a new ASK config file by
 * [Install the ASK CLI](https://developer.amazon.com/docs/smapi/quick-start-alexa-skills-kit-command-line-interface.html)
 * Run `ask new`
 * Name your skill (e.g. _"ChloeChristmas2018"_)
+* Run `ask deploy` (this will populate the necessary config files)
 * Copy the newly created `.ask` directory into the repo root directory
 * In the repo root directory:
     * `cd lambda/custom`
